@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="location_app.MainPage">
+
+    <StackLayout>
+        <Label FontAttributes="Bold"
+               TextColor="White"
+               HorizontalOptions="CenterAndExpand"
+               x:Name="ubicacionLbl"
+               Text="Ubicación"/>
+        <ScrollView x:Name="principalScrollview">
+            <StackLayout Margin="15,0">
+                <Frame BackgroundColor="#e97e62"
+                       CornerRadius="25"
+                       Padding="0"
+                       IsClippedToBounds="True">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Frame Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="0"
+                               IsClippedToBounds="True"
+                               Margin="15,15,15,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <maps:Map x:Name="MapView"
+                                          HeightRequest="350"
+                                          IsShowingUser="False"
+                                          MapClicked="agregaPin" />
+                                <Frame Grid.Row="0"
+                                       x:Name="imGetCurrent"
+                                       VerticalOptions="Start"
+                                       HorizontalOptions="End"
+                                       Margin="0"
+                                       Padding="10"
+                                       BackgroundColor="Transparent"
+                                       IsClippedToBounds="True">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="goCurrent"
+                                                              NumberOfTapsRequired="1" />
+                                    </Frame.GestureRecognizers>
+                                    <Image Source="currentlocation.png"
+                                           HeightRequest="25" />
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                        <Frame IsClippedToBounds="True"
+                               x:Name="actualizarMapa1"
+                               Grid.Row="2"
+                               HorizontalOptions="CenterAndExpand"
+                               CornerRadius="25"
+                               BackgroundColor="White"
+                               Padding="10,5">
+                            <Label Text="Ver en el Mapa"
+                                   TextColor="#e97e62"
+                                   FontAttributes="Bold"
+                                   x:Name="actualizarMapalb1" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="actualizaMapa"
+                                                      NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="1"
+                               CornerRadius="25"
+                               Grid.Row="3"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="Nombre"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="tituloLbl" />
+                                <Entry Placeholder="Ingresar Nombre de Ubicación"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       x:Name="tituloEntry"
+                                       Margin="15,0"
+                                       MaxLength="300"
+                                       FontAttributes="Bold"
+                                       Keyboard="Text"
+                                       ClearButtonVisibility="WhileEditing" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="4"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="Calle y No."
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="calleLbl" />
+                                <Entry Placeholder="Campo no Obligatorio"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       x:Name="calleEntry"
+                                       Margin="15,0"
+                                       MaxLength="300"
+                                       FontAttributes="Bold"
+                                       Keyboard="Text"
+                                       ClearButtonVisibility="WhileEditing" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="5"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="Código Postal"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="postalLbl" />
+                                <Entry Placeholder="Campo Sugerido"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       x:Name="postalEntry"
+                                       Margin="15,0"
+                                       MaxLength="5"
+                                       FontAttributes="Bold"
+                                       Keyboard="Numeric"
+                                       ClearButtonVisibility="WhileEditing" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="6"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="Colonia"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="coloniaLbl" />
+                                <Entry Placeholder="Campo Sugerido"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       x:Name="coloniaEntry"
+                                       Margin="15,0"
+                                       MaxLength="300"
+                                       FontAttributes="Bold"
+                                       Keyboard="Text"
+                                       ClearButtonVisibility="WhileEditing" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="7"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="Municipio"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="municipioLbl" />
+                                <Entry Placeholder="Campo Sugerido"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       x:Name="municipioEntry"
+                                       Margin="15,0"
+                                       MaxLength="300"
+                                       FontAttributes="Bold"
+                                       Keyboard="Text"
+                                       ClearButtonVisibility="WhileEditing" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="8"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="Estado"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="estadoLbl" />
+                                <Picker Title="Seleccione un Estado:"
+                                        TitleColor="Black"
+                                        TextColor="Black"
+                                        x:Name="pkEstado"
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="CenterAndExpand"
+                                        Margin="15,0"
+                                        FontAttributes="Bold" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="White"
+                               Margin="15,0"
+                               Padding="0"
+                               CornerRadius="25"
+                               Grid.Row="9"
+                               IsClippedToBounds="True">
+                            <StackLayout Spacing="0">
+                                <Label Text="País"
+                                       VerticalOptions="CenterAndExpand"
+                                       HorizontalOptions="Start"
+                                       Margin="15,10,0,0"
+                                       x:Name="paisLbl" />
+                                <Entry Placeholder="Ingresar país"
+                                       HorizontalOptions="FillAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                       x:Name="paisEntry"
+                                       Margin="15,0"
+                                       MaxLength="150"
+                                       FontAttributes="Bold"
+                                       Keyboard="Text"
+                                       ClearButtonVisibility="WhileEditing"
+                                       IsEnabled="False" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame IsClippedToBounds="True"
+                               x:Name="actualizarMapa2"
+                               Grid.Row="11"
+                               HorizontalOptions="CenterAndExpand"
+                               CornerRadius="25"
+                               BackgroundColor="White"
+                               Padding="10,5">
+                            <Label Text="Ver en el Mapa"
+                                   TextColor="#e97e62"
+                                   FontAttributes="Bold"
+                                   x:Name="actualizarMapalb2" />
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="actualizaMapa"
+                                                      NumberOfTapsRequired="1" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>
